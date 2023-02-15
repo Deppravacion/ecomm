@@ -1,5 +1,6 @@
 import './App.css'
 import './components/radButtons/RadButtons'
+import RadioBase from './components/radioBase/RadioBase'
 
 
 
@@ -37,16 +38,9 @@ class App extends React.Component {
 
     return(
       <div>
-        <h1>
-        Welcome to the store
-        </h1>
+        <h1> Welcome to the store </h1>
         <div>Sign In or continue as a Guest</div>
-        {radioData.length 
-        ? radioData.map((item, index) => (
-          type={item.type}
-          value={}
-        )) 
-        }
+        
       </div>
     )
 
