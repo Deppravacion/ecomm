@@ -1,9 +1,6 @@
+import React from 'react'
 import './App.css'
-import './components/welcome/Welcome'
-
-
-
-
+import Welcome from './components/welcome/Welcome'
 
 class App extends React.Component {
 
@@ -19,8 +16,6 @@ class App extends React.Component {
     return(
       <div>
         <Welcome />
-        
-        
       </div>
     )
 

@@ -1,8 +1,11 @@
 import React from "react";
 
+import SignUp from '../signUp/SignUp'
+import SignIn from '../signIn/SignIn'
+
 class Welcome extends React.Component {
     state = {
-        chooseLogIn: '',
+        selected: '',
       }
 
 
@@ -14,18 +17,21 @@ class Welcome extends React.Component {
     
     // }
 
-    onClick = (e) => {
-        e.target.name === 'signUp'
+    onClick = ({ target:{ name, value, checked}}) => {
+        console.log(name, value, checked);
+        
     }
 
     render() {
 
         return(
             <div>
-                <h1> Welcome to the store </h1>
+                <h1> Welcome G </h1>
                 <div>Sign In or Create Account</div>
                 <input type="radio" name="signUp" onClick={this.onClick} />
                 <input type="radio" name="signIn" onClick={this.onClick} />
+                {this.state.selected === 'signUp' ? <SignIn /> : <SignUp />}
+                {/* {this.state === 'signUp' ? <SignUp /> : null} */}
             </div>
         )
     }
@@ -33,4 +39,4 @@ class Welcome extends React.Component {
 
 
 
-export default Welcome 
+export default Welcome
