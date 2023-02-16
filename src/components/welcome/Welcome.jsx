@@ -17,13 +17,13 @@ class Welcome extends React.Component {
     
     // }
 
-    onClick = ({ target:{ name, value, id}}) => {
-        console.log(name, value, id);
-        this.setState({
+    onClick = ({ target:{ id }}) => {
+        this.setState((prevState) => ({
+            ...prevState.selected, 
             selected: id,
-        })
+        }))
+    
     }
-
     render() {
 
         return(
@@ -36,8 +36,8 @@ class Welcome extends React.Component {
                     <label htmlFor="signIn"> Sign In</label>
 
                 </div>
-                {this.state.selected === 'signUp' ? <SignUp /> : null}
-                {this.state.selected === 'signIn' ? <SignIn /> : null}
+                {this.state.selected === 'signUp' && <SignUp />}
+                {this.state.selected === 'signIn' && <SignIn />}
             </div>
         )
     }
