@@ -21,8 +21,11 @@ class Welcome extends React.Component {
         this.setState((prevState) => ({
             ...prevState.selected, 
             selected: id,
-        }))
-    
+        }))    
+    }
+
+    onChange = ({ target: {value, name}}) => {
+
     }
     render() {
 
@@ -37,7 +40,7 @@ class Welcome extends React.Component {
 
                 </div>
                 {this.state.selected === 'signUp' && <SignUp />}
-                {this.state.selected === 'signIn' && <SignIn />}
+                {this.state.selected === 'signIn' && <SignIn info={this.state} />}
             </div>
         )
     }
