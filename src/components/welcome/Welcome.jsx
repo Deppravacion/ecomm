@@ -1,5 +1,5 @@
 import React from "react";
-
+import './Welcome.css'
 import SignUp from '../signUp/SignUp'
 import SignIn from '../signIn/SignIn'
 
@@ -17,21 +17,27 @@ class Welcome extends React.Component {
     
     // }
 
-    onClick = ({ target:{ name, value, checked}}) => {
-        console.log(name, value, checked);
-        
+    onClick = ({ target:{ name, value, id}}) => {
+        console.log(name, value, id);
+        this.setState({
+            selected: id,
+        })
     }
 
     render() {
 
         return(
-            <div>
-                <h1> Welcome G </h1>
-                <div>Sign In or Create Account</div>
-                <input type="radio" name="signUp" onClick={this.onClick} />
-                <input type="radio" name="signIn" onClick={this.onClick} />
-                {this.state.selected === 'signUp' ? <SignIn /> : <SignUp />}
-                {/* {this.state === 'signUp' ? <SignUp /> : null} */}
+            <div className="welcomeWrapper">
+                <h1> Welcome Guest </h1>
+                <div className="radioWrapper">
+                    <input id="signUp" type="radio" name="memberGroup" onClick={this.onClick} />
+                    <label htmlFor="signUp"> Sign Up</label>
+                    <input id="signIn" type="radio" name="memberGroup" onClick={this.onClick} />
+                    <label htmlFor="signIn"> Sign In</label>
+
+                </div>
+                {this.state.selected === 'signUp' ? <SignUp /> : null}
+                {this.state.selected === 'signIn' ? <SignIn /> : null}
             </div>
         )
     }
