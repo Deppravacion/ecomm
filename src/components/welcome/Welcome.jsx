@@ -1,5 +1,5 @@
 import React from "react";
-import './Welcome.css'
+import './Welcome.module.css'
 import SignUp from '../signUp/SignUp'
 import SignIn from '../signIn/SignIn'
 
@@ -49,7 +49,7 @@ class Welcome extends React.Component {
        const {...state} = this.props
         return(
             <div className="welcomeWrapper">
-                <h1> Welcome Guest </h1>
+                <h1> Welcome  </h1>
                 <div className="radioWrapper">
                     <input id="signUp" type="radio" name="memberGroup" onClick={this.onClick} />
                     <label htmlFor="signUp"> Sign Up</label>

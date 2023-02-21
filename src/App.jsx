@@ -27,13 +27,12 @@ class App extends React.Component {
   render() {
 
     return(
-      <div>       
-        {this.state.renderPage == 'welcome' &&  <Welcome info={this.state} />}
-        {/* {this.state.renderPage == 'signIn' &&  <SingIn />}
-        {this.state.renderPage == 'signUp' &&  <SignUp />}
-        {this.state.renderPage == 'cart' &&  <Cart />}
-        {this.state.renderPage == 'checkout' &&  <Checkout />}
-        {this.state.renderPage == 'confirmation' &&  <Confirmation />} */}
+       
+      <div className="app-wrapper">
+        {/* <Banner /> */}
+        {/* <Store /> */}
+        {this.state.renderPage == 'welcome' &&  <Welcome info={this.state} />}   
+            
       </div>
     )
 
