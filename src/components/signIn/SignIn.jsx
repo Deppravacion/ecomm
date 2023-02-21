@@ -10,9 +10,8 @@ class SignIn extends React.Component {
 
 
     render() {
-        const {info: {userName, userPassword }} = this.props
         const inputData = [
-            { type: "text", label: "email", name: 'userEmail', error: 'it broke' },
+            { type: "text", label: "username", name: 'userName', error: 'it broke' },
             { type: "text", label: "password", name: 'userPassword', error: 'it broke' }
         ]
 
@@ -27,7 +26,8 @@ class SignIn extends React.Component {
                                     <InputBase
                                         type={item.type}
                                         value={inputData && inputData[item.name]}
-                                        // onChange={this.onChange}
+                                        // onChange={this.props.onChangeInput}
+                                        onChange={()=> this.props.handleChange}
                                         autoComplete='off'
                                         placeholder={item.label}
                                         name={item.name}
@@ -38,6 +38,7 @@ class SignIn extends React.Component {
                             ))
                         : null
                     }
+
                 </div>
             </form>
 
