@@ -1,5 +1,5 @@
 import React from "react";
-import './inputBase.css'
+import './inputBase.module.css'
 
 export const InputBase = ({...props}) => (
     <div>
