@@ -6,12 +6,14 @@ import './SignIn.module.css'
 
 
 class SignIn extends React.Component {
+    state = { 
 
+    }
 
 
     render() {
         const inputData = [
-            { type: "text", label: "username", name: 'userName', error: 'it broke' },
+            { type: "text", label: "email", name: 'email', error: 'it broke' },
             { type: "text", label: "password", name: 'userPassword', error: 'it broke' }
         ]
 
@@ -25,14 +27,12 @@ class SignIn extends React.Component {
                             <label key={index} htmlFor="" >
                                 <InputBase
                                     type={item.type}
-                                    // value={inputData && inputData[item.name]}
                                     // onChange={this.props.onChangeInput}
                                     // onChange={() => this.props.handleChange}
                                     autoComplete='off'
                                     placeholder={item.label}
                                     name={item.name}
                                     error={item.error}
-                                // onBlur={this.onBlur}
                                 />
                             </label>
                         ))

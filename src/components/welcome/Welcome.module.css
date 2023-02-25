@@ -1,15 +1,11 @@
 .welcomeWrapper {
-    display: flex;
-    flex-direction: column;
-    /* border: 3px solid black; */
-    padding: 30px;
-    box-shadow: 0px 0px 12px 6px lightgrey;
-    border-top-left-radius: 20px;
+height: 520px;
+padding: 0px 5px;
 }
 
 
-.radioWrapper {
+/* .radioWrapper {
     display: flex;
     justify-content: space-around;
-}
+} */
 

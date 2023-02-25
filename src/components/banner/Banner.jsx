@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import '../banner/Banner.module.css'
-
+import styles from './Banner.module.css'
+import Welcome from '../welcome/Welcome'
 class Banner extends Component {
 
     render() {
-
         return(            
-            <div className="bannerWrapper">
-
-                BANNER
-            </div>
-            
+            <div className={`  ${styles.bannerWrapper}`}>
+                <Welcome 
+                    updateEmail={this.props.updateEmail}
+                />
+            </div>            
         )
     }
 }
