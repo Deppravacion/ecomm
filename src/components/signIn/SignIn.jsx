@@ -3,13 +3,8 @@ import { InputBase } from '../inputBase/InputBase'
 import './SignIn.module.css'
 
 
-
-
 class SignIn extends React.Component {
-    state = { 
-
-    }
-
+    state = { }
 
     render() {
         const inputData = [

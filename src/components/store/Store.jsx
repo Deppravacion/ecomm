@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import { userData, majorStateComponents, paymentData } from '../vanillaJS/stateOrganizer'
-import Banner from '../banner/Banner'
-import Pages from '../pages/Pages'
+import { userData, majorStateComponents } from '../vanillaJS/stateOrganizer'
+
 import '../store/Store.module.css'
+import Welcome from '../welcome/Welcome'
 
 class Store extends Component {
     state = {
-        userData, 
-        majorStateComponents, 
-        paymentData
+      page: 'Welcome',
+      userData, 
+      majorStateComponents, 
+
     }
 
 
@@ -29,11 +30,7 @@ class Store extends Component {
 
     resetState = () => {
         this.setState({
-          message: '',
-          submarine: {
-            minDepth: '',
-            maxDepth: ''
-          }
+          
         })
     }
 
@@ -44,9 +41,11 @@ class Store extends Component {
         return(
         
         <div className="storeWrapper">
-            <Banner 
+          <Welcome />
+          
+            {/* <Banner 
             updateEmail={this.updateEmail}
-            /> 
+            />  */}
             {/* <Pages />             */}
         </div>
         )

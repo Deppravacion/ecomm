@@ -7,12 +7,15 @@ export const userData = {
     city: '', 
     state: '',
     zip: '',
+    // paymentData: {}, // these state items added dynamically as progress
+    // shipping: {},
+    // confirm: '',
     
 }
 
-export const paymentData = {
+// export const paymentData = {
 
-}
+// }
 
 export const majorStateComponents = {
     account: '', 
