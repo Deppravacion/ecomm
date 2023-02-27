@@ -1,54 +1,52 @@
 import React, { Component } from 'react'
-import { userData, majorStateComponents } from '../vanillaJS/stateOrganizer'
+import { userData, majorStateComponents, accounts } from '../vanillaJS/stateOrganizer'
 
 import '../store/Store.module.css'
 import Welcome from '../welcome/Welcome'
 
 class Store extends Component {
-    state = {
-      page: 'Welcome',
-      userData, 
-      majorStateComponents, 
+  state = {
+    page: 'Welcome',
+    account: '',
+    userData,
+  }
 
-    }
+  changeState = (name, state) => {
+      this.setState({
+      [name]: state,
+    })
+  }
 
+  changeSubState = (name, sub, state) => {
+    this.setState((prevState) => ({
+      [name]: {
+        ...prevState[name],
+        [sub]: state,
+      },
+    }))
+  }
 
-    changeState = (name, state) => {
-        this.setState({
-        [name]: state,
-      })
-    }
-
-    changeSubState = (name, sub, state) => {
-        this.setState((prevState) => ({
-          [name]: {
-            ...prevState[name],
-            [sub]: state,
-          },
-        }))
-    }
-
-    resetState = () => {
-        this.setState({
-          
-        })
-    }
+  resetState = () => {
+    this.setState({
+      
+    })
+  }
 
     updateEmail = (state) => this.changeSubState('userData', 'email', state )
 
     render() {
 
-        return(
+      return(
+      
+      <div className="storeWrapper">
+        <Welcome />
         
-        <div className="storeWrapper">
-          <Welcome />
-          
-            {/* <Banner 
-            updateEmail={this.updateEmail}
-            />  */}
-            {/* <Pages />             */}
-        </div>
-        )
+          {/* <Banner 
+          updateEmail={this.updateEmail}
+          />  */}
+          {/* <Pages />             */}
+      </div>
+      )
     }
 }
 
