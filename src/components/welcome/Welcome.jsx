@@ -7,6 +7,7 @@ class Welcome extends React.Component {
   //membership is local state. on submit will affect ( majorStateComponents: account:)
   state = {
     membership: '',
+
   }
 
   handleChange({ target: {name, value}} ) {
@@ -17,20 +18,20 @@ class Welcome extends React.Component {
   
   }
 
-  onChangeInput = ({target: {name, value}}) => {
-    console.log(`onChange log `);
-    switch(name) {
-      case 'userName':
+  // onInputChange = ({target: {name, value}}) => {
+  //   console.log(`onChange log `);
+  //   switch(name) {
+  //     case 'userName':
 
-      this.setState((prevState) => ({
-        ...prevState.userName,
-        userName: value,
-      }))
-      break
-    }
-  }
+  //     this.setState((prevState) => ({
+  //       ...prevState.userName,
+  //       userName: value,
+  //     }))
+  //     break
+  //   }
+  // }
     
-
+  
   onClick = ({ target:{ id }}) => {
     this.setState((prevState) => ({
         ...prevState.membership, 
@@ -38,14 +39,11 @@ class Welcome extends React.Component {
     }))    
   }
 
-    onChange = ({ target: {value, name}}) => {
-      
-    }
 
 
     render() {
         
-       const onChangeInput =  this.props
+       const onInputChange =  this.props
        const {...state} = this.props
         return(
             <div className={`${styles.welcomeWrapper}`}>
@@ -53,8 +51,10 @@ class Welcome extends React.Component {
                 <div className="radioWrapper">
                     <input id="signUp" type="radio" name="radbutton" onClick={this.onClick} />
                     <label htmlFor="signUp"> Sign Up</label>
+
                     <input id="signIn" type="radio" name="radbutton" onClick={this.onClick} />
                     <label htmlFor="signIn"> Sign In</label>
+
 
                 </div>
                 {this.state.membership === 'signUp' && <SignUp />}

@@ -1,15 +1,30 @@
 import React, { Component } from 'react'
-import { userData, majorStateComponents, accounts } from '../vanillaJS/stateOrganizer'
 
 import '../store/Store.module.css'
 import Welcome from '../welcome/Welcome'
+import { Cart } from '../cart/Cart'
+
+
+
 
 class Store extends Component {
   state = {
     page: 'Welcome',
-    account: '',
-    userData,
+    email: '', 
+    password: '', 
+    firstName: '', 
+    lastName: '',    
+    street: '', 
+    city: '', 
+    state: '',
+    zip: '',
+    cartItems: [],
+    payment: {},
+
+
   }
+
+  
 
   changeState = (name, state) => {
       this.setState({
@@ -32,19 +47,23 @@ class Store extends Component {
     })
   }
 
-    updateEmail = (state) => this.changeSubState('userData', 'email', state )
+    updateEmail = (state) => this.changeSubState('initUser', 'email', state )
 
     render() {
-
+      const { page } = this.state
       return(
       
       <div className="storeWrapper">
-        <Welcome />
+        {/* <Welcome /> */}
+        { page == 'Welcome' && <Welcome 
+        info={this.state}
         
-          {/* <Banner 
-          updateEmail={this.updateEmail}
-          />  */}
-          {/* <Pages />             */}
+        /> }
+        { page == 'Cart' && <Cart /> }
+        { page == 'Shipping' && <Welcome /> }
+        { page == 'Payment' && <Welcome /> }
+        { page == 'Confirmation' && <Welcome /> }
+
       </div>
       )
     }
