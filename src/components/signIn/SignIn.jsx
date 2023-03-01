@@ -27,23 +27,28 @@ class SignIn extends React.Component {
 
 
     testChange = ({ target: {name, value }}) => {
-        this.setState((preState) => ({
-            ...preState.email, 
-            email: value,
-        }))
+        this.setState({
+            [name]: value,
+        })
     }
+
+    globalEmail = (state) => this.props.updateEmail(state)
+    globalPassword = (state) => this.props.updatePassword(state)
 
     handleSubmit = (e) => {
         e.preventDefault()
         //validate the email/password to the defaultuser
         //use the prop drilled methods from Store to update global state
+        console.log(this.state.email);
+        this.globalEmail(this.state.email)
+        this.globalPassword(this.state.password)
+        console.log('should have fired the globalEmail method');
     }
 
     render() {
         const inputData = [
             { type: "text", label: "email", name: 'email', error: 'it broke' },
-            { type: "text", label: "password", name: 'userPassword', error: 'it broke' },
-            { type: "submit", label: "submit", name: 'submit', error: 'it broke' }
+            { type: "text", label: "password", name: 'password', error: 'it broke' },
         ]
         const { info: { email, password } } = this.props
 
@@ -72,7 +77,11 @@ class SignIn extends React.Component {
                         ))
                         : null
                     }
-
+                    <button 
+                    onClick={this.handleSubmit}
+                    >
+                    enter
+                    </button> 
                 </div>
             </form>
 
