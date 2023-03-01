@@ -10,10 +10,10 @@ class SignIn extends React.Component {
 
     }
 
-
-
+    
+    
     // onInputChange = ({ target: { name, value } }) => {
-    //     switch (name) {
+        //     switch (name) {
     //         case 'email':
     //             this.setState((prevState) => ({
     //                 ...prevState.email,
@@ -26,12 +26,12 @@ class SignIn extends React.Component {
     // }
 
 
-    testChange = ({ target: {name, value }}) => {
+    localChange = ({ target: {name, value }}) => {
         this.setState({
             [name]: value,
         })
     }
-
+    
     globalEmail = (state) => this.props.updateEmail(state)
     globalPassword = (state) => this.props.updatePassword(state)
 
@@ -39,10 +39,10 @@ class SignIn extends React.Component {
         e.preventDefault()
         //validate the email/password to the defaultuser
         //use the prop drilled methods from Store to update global state
-        console.log(this.state.email);
+
+ 
         this.globalEmail(this.state.email)
         this.globalPassword(this.state.password)
-        console.log('should have fired the globalEmail method');
     }
 
     render() {
@@ -51,8 +51,9 @@ class SignIn extends React.Component {
             { type: "text", label: "password", name: 'password', error: 'it broke' },
         ]
         const { info: { email, password } } = this.props
-
-
+        const globalState = this.props
+        
+        
         return (
             <form>
                 <div className="inputWrapper">
@@ -67,7 +68,7 @@ class SignIn extends React.Component {
                                     // onChange={this.props.onChangeInput}
                                     // onChange={() => this.props.handleChange}
                                     // onChange={this.onInputChange}
-                                    onChange={this.testChange}
+                                    onChange={this.localChange}
                                     autoComplete='off'
                                     placeholder={item.label}
                                     name={item.name}
