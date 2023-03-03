@@ -1,9 +1,10 @@
 import React from 'react'
 import { InputBase } from '../inputBase/InputBase'
-import './SignIn.module.css'
+import style from '../welcome/Welcome.module.css'
 import { defaultUser } from '../store/Store'
-import { validateFields, testLogger } from '../vanillaJS/stateOrganizer'
+// import { testLogger } from '../vanillaJS/stateOrganizer'
 
+import witness from './witness.png'
 
 class SignIn extends React.Component {
     state = {
@@ -36,40 +37,48 @@ class SignIn extends React.Component {
     
     globalEmail = (state) => this.props.updateEmail(state)
     globalPassword = (state) => this.props.updatePassword(state)
+    updatePage = (state) => this.props.updatePage(state)
 
-    // validateFields = (type, value) => {
-    //     //switch statement to handle each input field
+    validateFields = (type, value) => {
+        const localState = this.state
+        let isValidated = false
+        if (localState.email == defaultUser.email 
+            && localState.password == defaultUser.password
+            ) 
+            {
+                this.globalEmail(this.state.email)
+                this.globalPassword(this.state.password)       
+                this.updatePage('Cart')
+            }  
+        return localState
+    }
 
-
-    //     const { email, password } = this.state
-    //     console.log(` line 42 calls: email-${email} password-${password}`);
-    //     console.log(`log the defaultUser import: ${globalEmail}, deets: ${lastName}`);
-    //     switch (type) {
-    //         case 'email':
-    //             if (email == defaultUser.email ) { console.log(`holy mowly`)}
-    //     } 
-    // }
-
-    localValidation = (type, value) => validateFields()
-    localLogger = () => testLogger()
+    localLogger = () => testLogger() // testing importing functions
+    exploringDefaultUser = () => {
+        // const { email, password, firstName } = defaultUser
+        console.log(defaultUser.email  );
+        const globalState = this.props.info.info
+        console.log(globalState.page )
+    }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        //validate the email/password to the defaultuser
-        //use the prop drilled methods from Store to update global state
+        this.validateFields()
 
-        // this.localValidation(e.target.name, e.target.value)
         // console.log(testLogger());
-        this.localLogger()
-        this.localValidation()
-        this.globalEmail(this.state.email)
-        this.globalPassword(this.state.password)
+        // this.localLogger()//functional and works
+        // this.localValidation()
+        // this.exploringDefaultUser()
+
+        
     }
 
     render() {
+       const witnessIcon = <img src={witness} className="passwordIcon"></img>
+
         const inputData = [
-            { type: "text", label: "email", name: 'email', error: 'it broke' },
-            { type: "text", label: "password", name: 'password', error: 'it broke' },
+            { type: "text", label: "email", name: 'email', error: 'it broke', },
+            { type: "password", label: "password", name: 'password', error: 'it broke', },
         ]
         const { info: { email, password } } = this.props
         const globalState = this.props
@@ -77,13 +86,15 @@ class SignIn extends React.Component {
         
         return (
             <form>
-                <div className="inputWrapper">
+                <div className='container'>
                     <h2>Sign In</h2>
 
                     {inputData.length
                         ?
                         inputData.map((item, index) => (
                             <label key={index} htmlFor="" >
+
+                                <div className={style.inputWrapper}>
                                 <InputBase
                                     type={item.type}
                                     onChange={this.localChange}
@@ -91,11 +102,14 @@ class SignIn extends React.Component {
                                     placeholder={item.label}
                                     name={item.name}
                                     error={item.error}
-                                />
+                                    />
+                                </div>
                             </label>
                         ))
                         : null
                     }
+                    
+                    {witnessIcon}
                     <button 
                     onClick={this.handleSubmit}
                     >

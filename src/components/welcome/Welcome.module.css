@@ -9,3 +9,16 @@ padding: 0px 5px;
     justify-content: space-around;
 } */
 
+
+.inputWrapper input {
+    border: none;
+    background: transparent;
+    background-color: rgb(237, 234, 253);
+    padding: 5px 10px;
+  }
+  
+  .inputWrapper {
+    border: 1px solid lightblue;
+    padding: 20px;
+  }
+

@@ -58,6 +58,7 @@ class Store extends Component {
 
     updateEmail = (state) => this.changeState('email', state )
     updatePassword = (state) => this.changeState('password', state )
+    updatePage = (state) => this.changeState('page', state)
 
     render() {
       const { page } = this.state
@@ -67,6 +68,7 @@ class Store extends Component {
         {/* <Welcome /> */}
         { page == 'Welcome' && <Welcome st
         info={this.state}
+        updatePage={this.updatePage}
         updateEmail={this.updateEmail}
         updatePassword={this.updatePassword}
 
