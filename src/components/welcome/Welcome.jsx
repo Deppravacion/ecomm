@@ -49,15 +49,15 @@ class Welcome extends React.Component {
             <div className={`${styles.welcomeWrapper}`}>
                 <h1> e.Market </h1>
                 <div className="radioWrapper">
-                    <input id="signUp" type="radio" name="radbutton" onClick={this.onClick} />
-                    <label htmlFor="signUp"> Sign Up</label>
+                  <input id="signUp" type="radio" name="radbutton" onClick={this.onClick} />
+                  <label htmlFor="signUp"> Sign Up</label>
 
-                    <input id="signIn" type="radio" name="radbutton" onClick={this.onClick} />
-                    <label htmlFor="signIn"> Sign In</label>
-
+                  <input id="signIn" type="radio" name="radbutton" onClick={this.onClick} />
+                  <label htmlFor="signIn"> Sign In</label>
 
                 </div>
                 {this.state.membership === 'signUp' && <SignUp />}
+                
                 {this.state.membership === 'signIn' && <SignIn 
                 info={state} 
                 updatePage={this.props.updatePage}

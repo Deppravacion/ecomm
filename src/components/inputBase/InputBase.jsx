@@ -4,10 +4,10 @@ import style from './inputBase.module.css'
 
 
 export const InputBase = ({...props}) => (
-    <div>
+    // <div>
         <input {...props}
         />
-    </div>
+    // </div>
 )
 
 

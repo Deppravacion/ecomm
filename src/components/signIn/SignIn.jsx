@@ -4,7 +4,9 @@ import style from '../welcome/Welcome.module.css'
 import { defaultUser } from '../store/Store'
 // import { testLogger } from '../vanillaJS/stateOrganizer'
 
-import witness from './witness.png'
+import witness from '../../assets/witness.png'
+import hide from '../../assets/hide.png'
+import mail from '../../assets/mail.png'
 
 class SignIn extends React.Component {
     state = {
@@ -68,17 +70,42 @@ class SignIn extends React.Component {
         // console.log(testLogger());
         // this.localLogger()//functional and works
         // this.localValidation()
-        // this.exploringDefaultUser()
-
-        
+        // this.exploringDefaultUser()        
     }
 
+    eyeBlink = (e) => {
+        //target the id and set a case to flip it
+        console.log(`do we blink? ${e.target.id}`)
+        let icon = document.getElementById(e.target.id) // targeting the <img id: />
+        let field = document.getElementById( e.target.parentNode.previousSibling.id)
+
+        //i need to grab the input field for the password
+        if (icon.id == 'witness') {
+            //change the type to 'text
+            console.log(`show me stuff`);
+            field.type = 'text'
+            // field.icon = 'hideIcon'
+            return       
+        }
+        if (icon.id == 'hide' ) {
+            //change type to password
+            console.log(`hide the things`);
+            field.type = 'password'
+            // field.icon ='witnessIcon'
+            return
+        }
+    }
+
+
     render() {
-       const witnessIcon = <img src={witness} className="passwordIcon"></img>
+       const witnessIcon = <div  className={style.iconWrapper} onClick={this.eyeBlink}><img id='witness' src={witness} ></img></div> 
+       const hideIcon = <div className={style.iconWrapper} onClick={this.eyeBlink}><img id='hide' src={hide} ></img></div> 
+       const mailIcon = <div className={style.iconWrapper}><img id='mail' src={mail} ></img></div> 
+
 
         const inputData = [
-            { type: "text", label: "email", name: 'email', error: 'it broke', },
-            { type: "password", label: "password", name: 'password', error: 'it broke', },
+            { id: "emailField", type: "text", label: "email", name: 'email', error: 'it broke', icon: mailIcon},
+            { id: "passwordField", type: "password", label: "password", name: 'password', error: 'it broke', icon: witnessIcon},
         ]
         const { info: { email, password } } = this.props
         const globalState = this.props
@@ -96,20 +123,22 @@ class SignIn extends React.Component {
 
                                 <div className={style.inputWrapper}>
                                 <InputBase
+                                    id={item.id}
                                     type={item.type}
                                     onChange={this.localChange}
                                     autoComplete='off'
                                     placeholder={item.label}
                                     name={item.name}
                                     error={item.error}
+                                    // icon={item.icon}
                                     />
+                                {item.icon}
                                 </div>
                             </label>
                         ))
                         : null
                     }
                     
-                    {witnessIcon}
                     <button 
                     onClick={this.handleSubmit}
                     >
