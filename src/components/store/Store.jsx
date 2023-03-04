@@ -15,6 +15,20 @@ export const defaultUser = {
   state: 'CO',
   zip: '80205',
 }
+export let userList = [defaultUser]
+
+class userTemplate {
+  constructor() {
+    this.email, 
+    this.password, 
+    this.firstName, 
+    this.lastName, 
+    this.street, 
+    this.city, 
+    this.state, 
+    this.zip
+  }
+}
 
 class Store extends Component {
   state = {
