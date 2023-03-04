@@ -12,6 +12,7 @@ class SignIn extends React.Component {
     state = {
         email: '', 
         password: '',
+        eye: 'hide',
 
     }
 
