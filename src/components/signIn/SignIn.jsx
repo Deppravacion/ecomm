@@ -12,11 +12,10 @@ class SignIn extends React.Component {
     state = {
         email: '', 
         password: '',
-        eye: 'hide',
+        eye: true,
+     
 
-    }
-
-    
+    }    
     
     // onInputChange = ({ target: { name, value } }) => {
         //     switch (name) {
@@ -30,7 +29,6 @@ class SignIn extends React.Component {
     //             console.log(`sorry you broke it`);
     //     }
     // }
-
 
     localChange = ({ target: {name, value }}) => {
         this.setState({
@@ -74,39 +72,18 @@ class SignIn extends React.Component {
         // this.exploringDefaultUser()        
     }
 
-    eyeBlink = (e) => {
-        //target the id and set a case to flip it
-        console.log(`do we blink? ${e.target.id}`)
-        let icon = document.getElementById(e.target.id) // targeting the <img id: />
-        let field = document.getElementById( e.target.parentNode.previousSibling.id)
-
-        //i need to grab the input field for the password
-        if (icon.id == 'witness') {
-            //change the type to 'text
-            console.log(`show me stuff`);
-            field.type = 'text'
-            // field.icon = 'hideIcon'
-            return       
-        }
-        if (icon.id == 'hide' ) {
-            //change type to password
-            console.log(`hide the things`);
-            field.type = 'password'
-            // field.icon ='witnessIcon'
-            return
-        }
-    }
+    eyeBlink = () => this.setState({ eye: this.state.eye ? false : true })
 
 
     render() {
-       const witnessIcon = <div  className={style.iconWrapper} onClick={this.eyeBlink}><img id='witness' src={witness} ></img></div> 
-       const hideIcon = <div className={style.iconWrapper} onClick={this.eyeBlink}><img id='hide' src={hide} ></img></div> 
-       const mailIcon = <div className={style.iconWrapper}><img id='mail' src={mail} ></img></div> 
+        const witnessIcon = <div  className={style.iconWrapper} onClick={this.eyeBlink}><img id='witness' src={witness} ></img></div> 
+        const hideIcon = <div className={style.iconWrapper} onClick={this.eyeBlink}><img id='hide' src={hide} ></img></div> 
+        const mailIcon = <div className={style.iconWrapper}><img id='mail' src={mail} ></img></div> 
 
 
         const inputData = [
             { id: "emailField", type: "text", label: "email", name: 'email', error: 'it broke', icon: mailIcon},
-            { id: "passwordField", type: "password", label: "password", name: 'password', error: 'it broke', icon: witnessIcon},
+            { id: "passwordField", type: this.state.eye ? 'password' : 'text', label: "password", name: 'password', error: 'it broke', icon: this.state.eye ? witnessIcon : hideIcon},
         ]
         const { info: { email, password } } = this.props
         const globalState = this.props
