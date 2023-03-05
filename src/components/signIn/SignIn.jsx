@@ -29,17 +29,16 @@ class SignIn extends React.Component {
     }
     
     
-    
     validateLogIn = () => {
         //refactor this to use a parameter for the user
         this.doesAccountExist(this.state.email)
-        if (this.state.email != defaultUser.email) { this.setState({ errorEmail: true, }) }
-        if (this.state.password != defaultUser.password) { this.setState({ errorPassword: true, }) }
-        if (this.state.email == defaultUser.email && this.state.password == defaultUser.password) {
-            this.globalEmail(this.state.email)
-            this.globalPassword(this.state.password)       
-            this.updatePage('Cart')   
-        } 
+        // if (this.state.email != defaultUser.email) { this.setState({ errorEmail: true, }) }
+        // if (this.state.password != defaultUser.password) { this.setState({ errorPassword: true, }) }
+        // if (this.state.email == defaultUser.email && this.state.password == defaultUser.password) {
+        //     this.globalEmail(this.state.email)
+        //     this.globalPassword(this.state.password)       
+        //     this.updatePage('Cart')   
+        // } 
         
         
     }
@@ -54,11 +53,15 @@ class SignIn extends React.Component {
     //new functions below to replace the ones above that deal with user accounts stuff *****************
     
     doesAccountExist = (user) => {      
-        const {info: {globalState}} = this.props  
-        console.log({info});
-        // for (let i = 0; i < globalState.userAccounts.length; i++) {
-
-        // }
+        const {info} = this.props
+        let globalState = info.info
+        for (const account of globalState.userAccounts)
+        if (account.email == user) {
+            console.log(`fuck ya`);
+        } else {
+            console.log(`${user} the user and teh account.email: ${account.email}`);
+            console.log(`oh hell no`);
+        }
     }
     
     render() {

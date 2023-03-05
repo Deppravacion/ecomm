@@ -43,7 +43,6 @@ class Welcome extends React.Component {
 
   render() {        
     const {...state} = this.props
-    // const {...globalState } = this.props
     return(
       <div className={`${styles.welcomeWrapper}`}>
         <h1> e.Market </h1>
@@ -58,10 +57,9 @@ class Welcome extends React.Component {
         {this.state.membership === 'signUp' && <SignUp />}
         
         {this.state.membership === 'signIn' && <SignIn 
-        info={state} 
-        // globalState={globalState}
-        onChange={this.handleChange}
-        updatePage={this.props.updatePage}
+          info={state} 
+          onChange={this.handleChange}
+          updatePage={this.props.updatePage}
         // updateEmail={this.props.updateEmail} 
         // updatePassword={this.props.updatePassword} 
         />}
