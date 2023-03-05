@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputBase } from '../inputBase/InputBase'
 import style from '../welcome/Welcome.module.css'
-import { defaultUser, userList } from '../store/Store'
+import { defaultUser } from '../store/Store'
 // import { testLogger } from '../vanillaJS/stateOrganizer'
 
 import witness from '../../assets/witness.png'

@@ -34,3 +34,8 @@ padding: 0px 5px;
     height: 25px;
     width: 25px;
 }
+
+.errorText {
+    color: rgb(213 66 66);
+    font-weight: 800;
+}

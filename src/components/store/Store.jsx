@@ -14,25 +14,30 @@ export const defaultUser = {
   city: 'Denver', 
   state: 'CO',
   zip: '80205',
-}
-export let userList = [defaultUser]
 
-class userTemplate {
-  constructor() {
-    this.email, 
-    this.password, 
-    this.firstName, 
-    this.lastName, 
-    this.street, 
-    this.city, 
-    this.state, 
-    this.zip
-  }
 }
+
+
+
 
 class Store extends Component {
   state = {
     page: 'Welcome',
+    userAccounts: [
+      {
+        email: 'default@estore.com', 
+        password: 'Password123', 
+        firstName: 'John', 
+        lastName: 'Denver',    
+        street: '2001 Blake St', 
+        city: 'Denver', 
+        state: 'CO',
+        zip: '80205',
+        cartItems: [],
+        payment: {},
+      }
+    ],
+
     email: '', 
     password: '', 
     firstName: '', 
@@ -41,10 +46,6 @@ class Store extends Component {
     city: '', 
     state: '',
     zip: '',
-    cartItems: [],
-    payment: {},
-
-
   }
 
   
