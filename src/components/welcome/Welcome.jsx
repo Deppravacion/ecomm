@@ -41,33 +41,33 @@ class Welcome extends React.Component {
 
 
 
-    render() {
+  render() {        
+    const {...state} = this.props
+    // const {...globalState } = this.props
+    return(
+      <div className={`${styles.welcomeWrapper}`}>
+        <h1> e.Market </h1>
+        <div className="radioWrapper">
+          <input id="signUp" type="radio" name="radbutton" onClick={this.onClick} />
+          <label htmlFor="signUp"> sign Up</label>
+
+          <input id="signIn" type="radio" name="radbutton" onClick={this.onClick} />
+          <label htmlFor="signIn"> sign In</label>
+
+        </div>
+        {this.state.membership === 'signUp' && <SignUp />}
         
-       const onInputChange =  this.props
-       const {...state} = this.props
-        return(
-            <div className={`${styles.welcomeWrapper}`}>
-                <h1> e.Market </h1>
-                <div className="radioWrapper">
-                  <input id="signUp" type="radio" name="radbutton" onClick={this.onClick} />
-                  <label htmlFor="signUp"> Sign Up</label>
-
-                  <input id="signIn" type="radio" name="radbutton" onClick={this.onClick} />
-                  <label htmlFor="signIn"> Sign In</label>
-
-                </div>
-                {this.state.membership === 'signUp' && <SignUp />}
-                
-                {this.state.membership === 'signIn' && <SignIn 
-                info={state} 
-                updatePage={this.props.updatePage}
-                onChange={this.handleChange}
-                updateEmail={this.props.updateEmail} 
-                updatePassword={this.props.updatePassword} 
-                />}
-            </div>
-        )
-    }
+        {this.state.membership === 'signIn' && <SignIn 
+        info={state} 
+        // globalState={globalState}
+        onChange={this.handleChange}
+        updatePage={this.props.updatePage}
+        // updateEmail={this.props.updateEmail} 
+        // updatePassword={this.props.updatePassword} 
+        />}
+      </div>
+    )
+  }
 }
 
 

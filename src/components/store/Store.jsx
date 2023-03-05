@@ -14,7 +14,6 @@ export const defaultUser = {
   city: 'Denver', 
   state: 'CO',
   zip: '80205',
-
 }
 
 
@@ -37,6 +36,7 @@ class Store extends Component {
         payment: {},
       }
     ],
+
 
     email: '', 
     password: '', 
@@ -83,6 +83,7 @@ class Store extends Component {
         {/* <Welcome /> */}
         { page == 'Welcome' && <Welcome st
         info={this.state}
+
         updatePage={this.updatePage}
         updateEmail={this.updateEmail}
         updatePassword={this.updatePassword}

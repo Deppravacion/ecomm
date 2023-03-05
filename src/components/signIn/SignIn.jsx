@@ -2,7 +2,6 @@ import React from 'react'
 import { InputBase } from '../inputBase/InputBase'
 import style from '../welcome/Welcome.module.css'
 import { defaultUser } from '../store/Store'
-// import { testLogger } from '../vanillaJS/stateOrganizer'
 
 import witness from '../../assets/witness.png'
 import hide from '../../assets/hide.png'
@@ -14,11 +13,14 @@ class SignIn extends React.Component {
         password: '',
         errorEmail: false,
         errorPassword: false,
-        eye: true,
-     
-
+        eye: true, 
     }    
     
+    globalEmail = (state) => this.props.updateEmail(state)
+    globalPassword = (state) => this.props.updatePassword(state)
+    updatePage = (state) => this.props.updatePage(state)
+
+    eyeBlink = () => this.setState({ eye: this.state.eye ? false : true })
 
     localChange = ({ target: {name, value }}) => {
         this.setState({
@@ -26,20 +28,8 @@ class SignIn extends React.Component {
         })
     }
     
-    globalEmail = (state) => this.props.updateEmail(state)
-    globalPassword = (state) => this.props.updatePassword(state)
-    updatePage = (state) => this.props.updatePage(state)
-
-    doesAccountExist = (user) => {        
-        for (let i = 0; i < userList.length; i++ ) {
-            if (userList[i].email == user) { 
-                console.log(`were here looking in the userList and found a valid user`);
-                return true
-            }
-            return false
-        }
-    }
-
+    
+    
     validateLogIn = () => {
         //refactor this to use a parameter for the user
         this.doesAccountExist(this.state.email)
@@ -50,47 +40,47 @@ class SignIn extends React.Component {
             this.globalPassword(this.state.password)       
             this.updatePage('Cart')   
         } 
-
-
+        
+        
     }
-
-    localLogger = () => testLogger() // testing importing functions
-    exploringDefaultUser = () => {
-        // const { email, password, firstName } = defaultUser
-        console.log(defaultUser.email  );
-        const globalState = this.props.info.info
-        console.log(globalState.page )
-    }
-
+    
+    
     handleSubmit = (e) => {
         e.preventDefault()
         //place valication methods to cover the jazz
         this.validateLogIn()       
     }
+    
+    //new functions below to replace the ones above that deal with user accounts stuff *****************
+    
+    doesAccountExist = (user) => {      
+        const {info: {globalState}} = this.props  
+        console.log({info});
+        // for (let i = 0; i < globalState.userAccounts.length; i++) {
 
-    eyeBlink = () => this.setState({ eye: this.state.eye ? false : true })
-
-
+        // }
+    }
+    
     render() {
         const witnessIcon = <div  className={style.iconWrapper} onClick={this.eyeBlink}><img id='witness' src={witness} ></img></div> 
         const hideIcon = <div className={style.iconWrapper} onClick={this.eyeBlink}><img id='hide' src={hide} ></img></div> 
         const mailIcon = <div className={style.iconWrapper}><img id='mail' src={mail} ></img></div> 
         const errorEmailMessage = <div className={style.errorText}>enter the correct email </div>
         const errorPasswordMessage = <div className={style.errorText}>enter the correct password </div>
-
-
+        
+        
         const inputData = [
             { id: "emailField", type: "text", label: "email", name: 'email', error: this.state.errorEmail ? errorEmailMessage : null, icon: mailIcon},
             { id: "passwordField", type: this.state.eye ? 'password' : 'text', label: "password", name: 'password', error: this.state.errorPassword ? errorPasswordMessage : null, icon: this.state.eye ? witnessIcon : hideIcon},
         ]
-        const { info: { email, password } } = this.props
+        // const { info: { email, password } } = this.props
         const globalState = this.props
         
         
         return (
             <form>
                 <div className='container'>
-                    <h2>Sign In</h2>
+                    <h2>welcome back</h2>
 
                     {inputData.length
                         ?
@@ -115,12 +105,13 @@ class SignIn extends React.Component {
                         ))
                         : null
                     }
-                    
-                    <button 
-                    onClick={this.handleSubmit}
-                    >
-                    enter
-                    </button> 
+                    <div className='container'>
+                        <button 
+                        onClick={this.handleSubmit}
+                        >
+                        enter
+                        </button> 
+                    </div>
                 </div>
             </form>
 
