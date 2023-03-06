@@ -30,39 +30,22 @@ class SignIn extends React.Component {
     
     
     validateLogIn = () => {
-        //refactor this to use a parameter for the user
-        this.doesAccountExist(this.state.email)
-        // if (this.state.email != defaultUser.email) { this.setState({ errorEmail: true, }) }
-        // if (this.state.password != defaultUser.password) { this.setState({ errorPassword: true, }) }
-        // if (this.state.email == defaultUser.email && this.state.password == defaultUser.password) {
-        //     this.globalEmail(this.state.email)
-        //     this.globalPassword(this.state.password)       
-        //     this.updatePage('Cart')   
-        // } 
-        
-        
+        const {info} = this.props
+        let globalState = info.info
+
+        for (const account of globalState.userAccounts) {
+            if (this.state.email != account.email) { this.setState({ errorEmail: true })}
+            if (this.state.password != account.password) { this.setState({ errorPassword: true, }) }
+            if (this.state.email == account.email && this.state.password == account.password) { this.updatePage('Cart')} 
+        }  
     }
     
     
     handleSubmit = (e) => {
         e.preventDefault()
-        //place valication methods to cover the jazz
         this.validateLogIn()       
     }
     
-    //new functions below to replace the ones above that deal with user accounts stuff *****************
-    
-    doesAccountExist = (user) => {      
-        const {info} = this.props
-        let globalState = info.info
-        for (const account of globalState.userAccounts)
-        if (account.email == user) {
-            console.log(`fuck ya`);
-        } else {
-            console.log(`${user} the user and teh account.email: ${account.email}`);
-            console.log(`oh hell no`);
-        }
-    }
     
     render() {
         const witnessIcon = <div  className={style.iconWrapper} onClick={this.eyeBlink}><img id='witness' src={witness} ></img></div> 
@@ -77,7 +60,7 @@ class SignIn extends React.Component {
             { id: "passwordField", type: this.state.eye ? 'password' : 'text', label: "password", name: 'password', error: this.state.errorPassword ? errorPasswordMessage : null, icon: this.state.eye ? witnessIcon : hideIcon},
         ]
         // const { info: { email, password } } = this.props
-        const globalState = this.props
+        // const globalState = this.props
         
         
         return (
@@ -99,7 +82,7 @@ class SignIn extends React.Component {
                                     placeholder={item.label}
                                     name={item.name}
                                     error={item.error}
-                                    // icon={item.icon}
+                             
                                     />
                                 {item.icon}
                                 </div>

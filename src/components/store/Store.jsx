@@ -17,8 +17,6 @@ export const defaultUser = {
 }
 
 
-
-
 class Store extends Component {
   state = {
     page: 'Welcome',
@@ -34,6 +32,7 @@ class Store extends Component {
         zip: '80205',
         cartItems: [],
         payment: {},
+        promo: ''
       }
     ],
 
