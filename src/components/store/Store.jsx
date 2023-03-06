@@ -17,6 +17,7 @@ export const defaultUser = {
 }
 
 
+
 class Store extends Component {
   state = {
     page: 'Welcome',

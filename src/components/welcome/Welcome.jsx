@@ -48,24 +48,22 @@ class Welcome extends React.Component {
         <h1> e.Market </h1>
         <div className="radioWrapper">
           <input id="signUp" type="radio" name="radbutton" onClick={this.onClick} />
-          <label htmlFor="signUp"> sign Up</label>
+          <label htmlFor="signUp"> sign.Up</label>
 
           <input id="signIn" type="radio" name="radbutton" onClick={this.onClick} />
-          <label htmlFor="signIn"> sign In</label>
+          <label htmlFor="signIn"> sign.In</label>
 
         </div>
         {this.state.membership === 'signUp' && <SignUp 
-        info={state} 
-        onChange={this.handleChange}
-        updatePage={this.props.updatePage}
+          info={state} 
+          onChange={this.handleChange}
+          updatePage={this.props.updatePage}
         />}
         
         {this.state.membership === 'signIn' && <SignIn 
           info={state} 
           onChange={this.handleChange}
           updatePage={this.props.updatePage}
-        // updateEmail={this.props.updateEmail} 
-        // updatePassword={this.props.updatePassword} 
         />}
       </div>
     )
