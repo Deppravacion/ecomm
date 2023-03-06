@@ -13,6 +13,9 @@ class SignUp extends React.Component {
         passwordCheck: '',           
         errorEmail: false,
         errorPassword: false,
+        errorPasswordCheck: 'false',
+        errorName: 'false', 
+        errorZip: 'false', 
         eye: true, 
     }
 
@@ -39,12 +42,48 @@ class SignUp extends React.Component {
         const inputData = [
             { id: "emailField", type: "text", label: "email", name: 'email', error: this.state.errorEmail ? 'emailerror' : null, icon: mailIcon},
             { id: "passwordField", type: this.state.eye ? 'password' : 'text', label: "password", name: 'password', error: this.state.errorPassword ? 'error' : null, icon: this.state.eye ? witnessIcon : hideIcon},
+            { id: "passwordFieldCheck", type: this.state.eye ? 'password' : 'text', label: "re-enter password", name: 'passwordCheck', error: this.state.errorPasswordCheck ? 'error' : null, icon: this.state.eye ? witnessIcon : hideIcon},
+            { id: "firstNameField", type: "text", label: "firstName", name: 'firstName', error: this.state.errorName ? 'nameErr' : null, icon: mailIcon},
+            { id: "lastNameField", type: "text", label: "lastName", name: 'lastName', error: this.state.errorName ? 'nameERR' : null, icon: mailIcon},
         ]
 
         return(
-            <div>
-                Sign Up Page
-            </div>
+<form>
+                <div className='container'>
+                    <h2>welcome to e.Market</h2>
+
+                    {inputData.length
+                        ?
+                        inputData.map((item, index) => (
+                            <label key={index} htmlFor="" >
+
+                                <div className={style.inputWrapper}>
+                                <InputBase
+                                    id={item.id}
+                                    type={item.type}
+                                    onChange={this.localChange}
+                                    autoComplete='off'
+                                    placeholder={item.label}
+                                    name={item.name}
+                                    error={item.error}
+                             
+                                    />
+                                {item.icon}
+                                </div>
+                                {item.error}
+                            </label>
+                        ))
+                        : null
+                    }
+                    <div className='container'>
+                        <button 
+                        onClick={this.handleSubmit}
+                        >
+                        enter
+                        </button> 
+                    </div>
+                </div>
+            </form>
         )
     }
 }

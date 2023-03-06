@@ -54,7 +54,11 @@ class Welcome extends React.Component {
           <label htmlFor="signIn"> sign In</label>
 
         </div>
-        {this.state.membership === 'signUp' && <SignUp />}
+        {this.state.membership === 'signUp' && <SignUp 
+        info={state} 
+        onChange={this.handleChange}
+        updatePage={this.props.updatePage}
+        />}
         
         {this.state.membership === 'signIn' && <SignIn 
           info={state} 
