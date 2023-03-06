@@ -4,6 +4,11 @@ import style from '../welcome/Welcome.module.css'
 import witness from '../../assets/witness.png'
 import hide from '../../assets/hide.png'
 import mail from '../../assets/mail.png'
+import city from '../../assets/city.png'
+import numbers from '../../assets/numbers.png'
+import usa from '../../assets/usa.png'
+import textOnly from '../../assets/textOnly.png'
+import street from '../../assets/street.png'
 
 class SignUp extends React.Component {
 
@@ -14,6 +19,7 @@ class SignUp extends React.Component {
         errorEmail: false,
         errorPassword: false,
         errorPasswordCheck: 'false',
+        errorEmpty: 'false',
         errorName: 'false', 
         errorZip: 'false', 
         eye: true, 
@@ -45,6 +51,11 @@ class SignUp extends React.Component {
             { id: "passwordFieldCheck", type: this.state.eye ? 'password' : 'text', label: "re-enter password", name: 'passwordCheck', error: this.state.errorPasswordCheck ? 'error' : null, icon: this.state.eye ? witnessIcon : hideIcon},
             { id: "firstNameField", type: "text", label: "firstName", name: 'firstName', error: this.state.errorName ? 'nameErr' : null, icon: mailIcon},
             { id: "lastNameField", type: "text", label: "lastName", name: 'lastName', error: this.state.errorName ? 'nameERR' : null, icon: mailIcon},
+
+            { id: "streetField", type: "text", label: "street", name: 'street', error: this.state.errorEmpty ? 'nameERR' : null, icon: mailIcon},
+            { id: "cityField", type: "text", label: "lastName", name: 'lastName', error: this.state.errorEmpty ? 'nameERR' : null, icon: mailIcon},
+            { id: "stateField", type: "text", label: "lastName", name: 'lastName', error: this.state.errorEmpty ? 'nameERR' : null, icon: mailIcon},
+            { id: "zipField", type: "text", label: "lastName", name: 'lastName', error: this.state.errorZip ? 'nameERR' : null, icon: mailIcon},
         ]
 
         return(
