@@ -41,11 +41,15 @@ class SignUp extends React.Component {
     validateSignUp = () => {
         const {info} = this.props
         let globalState = info.info
+        const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+        const lettersRegex = /^[a-zA-Z]+$/
+        const numbersRegex = /^[0-9]+$/
 
         for ( const account of globalState.userAccounts) {
             //does user already exist
-            if (this.state.email == account.email) { return this.setState({ errorDuplicateUser: true })}
+            (this.state.email == account.email) ? this.setState({errorDuplicateUser: true}) : this.setState({errorDuplicateUser: false})
             //validate email
+            emailRegex.test(this.state.email) ? this.setState({errorEmail: false}) : this.setState({errorEmail: true})
             //
         }
 
@@ -67,8 +71,12 @@ class SignUp extends React.Component {
         const usaIcon = <div className={style.iconWrapper}><img id='usa' src={usa} ></img></div> 
         const numbersIcon = <div className={style.iconWrapper}><img id='numbers' src={numbers} ></img></div> 
 
+        const errorDuplicateUser = <div className={style.errorText}>the user already exists please sign.In</div>
+        const errorEmail = <div className={style.errorText}>correct e.mail format please</div>
+
         const inputData = [
-            { id: "emailField", type: "text", label: "email", name: 'email', error: this.state.errorEmail ? 'emailerror' : null, icon: mailIcon},
+            { id: "emailField", type: "text", label: "email", name: 'email', error: this.state.errorEmail ? errorEmail : null 
+            || this.state.errorDuplicateUser ? errorDuplicateUser : null, icon: mailIcon},
             { id: "passwordField", type: this.state.eye ? 'password' : 'text', label: "password", name: 'password', error: this.state.errorPassword ? 'error' : null, icon: this.state.eye ? witnessIcon : hideIcon},
             { id: "passwordFieldCheck", type: this.state.eye ? 'password' : 'text', label: "re.Enter password", name: 'passwordCheck', error: this.state.errorPasswordCheck ? 'error' : null, icon: this.state.eye ? witnessIcon : hideIcon},
             { id: "firstNameField", type: "text", label: "first.Name", name: 'firstName', error: this.state.errorFirstName ? 'nameErr' : null, icon: textIcon},
