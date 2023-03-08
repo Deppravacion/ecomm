@@ -21,7 +21,7 @@ class SignUp extends React.Component {
         errorFirstName: false, 
         errorLastName: false, 
         errorZip: false, 
-        validUser: false,
+        // 
         eye: false, 
         email: '', 
         password: '',
@@ -58,13 +58,43 @@ class SignUp extends React.Component {
         const numbersRegex = /^[0-9]+$/
         
         for ( const account of globalState.userAccounts) {
-            if (this.state.email == account.email) { return this.setState({errorDuplicateUser: true})}
+            if (this.state.email == account.email) { 
+                return this.setState({errorDuplicateUser: true})
+            } else if (this.state.email != account.email) {
+                this.setState({errorDuplicateUser: false})
+            }
         }
-        if (this.state.password != this.state.passwordCheck) { return this.setState({errorPasswordCheck: true})}
-        if (!emailRegex.test(this.state.email)) { return this.setState({errorEmail: true})}
-        if (!lettersRegex.test(this.state.firstName)) { return this.setState({errorFirstName: true})}
-        if (!lettersRegex.test(this.state.lastName)) { return this.setState({errorLastName: true})}
-        if (!numbersRegex.test(this.state.zip)) { return this.setState({errorZip: true})}        
+
+        if (!emailRegex.test(this.state.email)) { 
+            return this.setState({errorEmail: true})
+        } else if (emailRegex.test(this.state.email)) {
+            this.setState({errorEmail: false})
+        }
+
+        if (this.state.password != this.state.passwordCheck) {
+            return this.setState({errorPasswordCheck: true})
+        } else if (this.state.password == this.state.passwordCheck) {
+            this.setState({errorPasswordCheck: false})
+        }
+        
+        if (!lettersRegex.test(this.state.firstName)) { 
+            return this.setState({errorFirstName: true})
+        } else if (lettersRegex.test(this.state.firstName)) {
+            this.setState({errorFirstName: false})
+        }
+
+        if (!lettersRegex.test(this.state.lastName)) { 
+            return this.setState({errorLastName: true})
+        } else if (lettersRegex.test(this.state.lastName)) {
+            this.setState({errorLastName: false})
+        }
+
+        if (!numbersRegex.test(this.state.zip)) { 
+            return this.setState({errorZip: true})
+        } else if (numbersRegex.test(this.state.zip)) {
+            this.setState({errorZip: false})
+        }
+        
         this.completeSignUp()
     }
 
@@ -87,6 +117,7 @@ class SignUp extends React.Component {
     }
 
     render() {
+        //icon images
         const witnessIcon = <div  className={style.iconWrapper} onClick={this.eyeBlink}><img id='witness' src={witness} ></img></div> 
         const hideIcon = <div className={style.iconWrapper} onClick={this.eyeBlink}><img id='hide' src={hide} ></img></div> 
         const mailIcon = <div className={style.iconWrapper}><img id='mail' src={mail} ></img></div> 
@@ -95,7 +126,7 @@ class SignUp extends React.Component {
         const cityIcon = <div className={style.iconWrapper}><img id='city' src={city} ></img></div> 
         const usaIcon = <div className={style.iconWrapper}><img id='usa' src={usa} ></img></div> 
         const numbersIcon = <div className={style.iconWrapper}><img id='numbers' src={numbers} ></img></div> 
-
+        //error snippets
         const errorDuplicateUser = <div className={style.errorText}>the user already exists please sign.In</div>
         const errorEmail = <div className={style.errorText}>correct e.mail format please</div>
         const errorLetter = <div className={style.errorText}>only letters please</div>
@@ -119,7 +150,7 @@ class SignUp extends React.Component {
         return(
             <form>
                 <div className='container'>
-                    <h2>welcome to e.Market</h2>
+                    <h2>welcome</h2>
 
                     {inputData.length
                         ?

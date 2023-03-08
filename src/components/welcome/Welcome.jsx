@@ -18,28 +18,9 @@ class Welcome extends React.Component {
   
   }
 
-  // onInputChange = ({target: {name, value}}) => {
-  //   console.log(`onChange log `);
-  //   switch(name) {
-  //     case 'userName':
-
-  //     this.setState((prevState) => ({
-  //       ...prevState.userName,
-  //       userName: value,
-  //     }))
-  //     break
-  //   }
-  // }
-    
-  
-  onClick = ({ target:{ id }}) => {
-    this.setState((prevState) => ({
-        ...prevState.membership, 
-        membership: id,
-    }))    
+  onClick = ({target:{id}}) => {
+    this.setState({membership: id})
   }
-
-
 
   render() {        
     const {...state} = this.props
@@ -47,6 +28,7 @@ class Welcome extends React.Component {
       <div className={`${styles.welcomeWrapper}`}>
         <h1> e.Market </h1>
         <div className="radioWrapper">
+          
           <input id="signUp" type="radio" name="radbutton" onClick={this.onClick} />
           <label htmlFor="signUp"> sign.Up</label>
 
