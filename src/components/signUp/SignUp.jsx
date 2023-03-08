@@ -13,9 +13,6 @@ import street from '../../assets/street.png'
 class SignUp extends React.Component {
 
     state = {
-        email: '', 
-        password: '',
-        passwordCheck: '',
         errorDuplicateUser: false,           
         errorEmail: false,
         errorPassword: false,
@@ -24,41 +21,69 @@ class SignUp extends React.Component {
         errorFirstName: false, 
         errorLastName: false, 
         errorZip: false, 
-        eye: true, 
+        validUser: false,
+        eye: false, 
+        email: '', 
+        password: '',
+        passwordCheck: '',
+        firstName: '', 
+        lastName: '', 
+        street: '',
+        city: '',
+        state: '', 
+        zip: '',   
     }
-
+    
     updatePage = (state) => this.props.updatePage(state)
-
+    addUserToUserAccounts = (user) => { this.props.addUserToUserAccounts(user) }
+    
     eyeBlink = () => this.setState({ eye: this.state.eye ? false : true })
-
+    
     localChange = ({ target: {name, value }}) => {
         this.setState({
             [name]: value,
-        })
+        },)
     }
 
-        
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.validateSignUp()
+    }
+
     validateSignUp = () => {
         const {info} = this.props
         let globalState = info.info
         const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
         const lettersRegex = /^[a-zA-Z]+$/
         const numbersRegex = /^[0-9]+$/
-
+        
         for ( const account of globalState.userAccounts) {
-            //does user already exist
-            (this.state.email == account.email) ? this.setState({errorDuplicateUser: true}) : this.setState({errorDuplicateUser: false})
-            //validate email
-            emailRegex.test(this.state.email) ? this.setState({errorEmail: false}) : this.setState({errorEmail: true})
-            //
+            if (this.state.email == account.email) { return this.setState({errorDuplicateUser: true})}
         }
-
-
+        if (this.state.password != this.state.passwordCheck) { return this.setState({errorPasswordCheck: true})}
+        if (!emailRegex.test(this.state.email)) { return this.setState({errorEmail: true})}
+        if (!lettersRegex.test(this.state.firstName)) { return this.setState({errorFirstName: true})}
+        if (!lettersRegex.test(this.state.lastName)) { return this.setState({errorLastName: true})}
+        if (!numbersRegex.test(this.state.zip)) { return this.setState({errorZip: true})}        
+        this.completeSignUp()
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        this.validateSignUp()
+    completeSignUp = () => {
+        let newUser = {
+            email: this.state.email,
+            password: this.state.password, 
+            firstName: this.state.firstName, 
+            lastName: this.state.lastName,
+            street: this.state.street, 
+            city: this.state.city, 
+            state: this.state.state,
+            zip: this.state.zip,
+            cartItems: [],
+            payment: {},
+            promo: '',        
+        }     
+        this.addUserToUserAccounts(newUser)
+        this.updatePage('Cart')     
     }
 
     render() {
@@ -73,23 +98,26 @@ class SignUp extends React.Component {
 
         const errorDuplicateUser = <div className={style.errorText}>the user already exists please sign.In</div>
         const errorEmail = <div className={style.errorText}>correct e.mail format please</div>
+        const errorLetter = <div className={style.errorText}>only letters please</div>
+        const errorNumber = <div className={style.errorText}>only munbers please</div>
+        const errorPasswordCheck = <div className={style.errorText}>passwords must match</div>
 
         const inputData = [
             { id: "emailField", type: "text", label: "email", name: 'email', error: this.state.errorEmail ? errorEmail : null 
             || this.state.errorDuplicateUser ? errorDuplicateUser : null, icon: mailIcon},
-            { id: "passwordField", type: this.state.eye ? 'password' : 'text', label: "password", name: 'password', error: this.state.errorPassword ? 'error' : null, icon: this.state.eye ? witnessIcon : hideIcon},
-            { id: "passwordFieldCheck", type: this.state.eye ? 'password' : 'text', label: "re.Enter password", name: 'passwordCheck', error: this.state.errorPasswordCheck ? 'error' : null, icon: this.state.eye ? witnessIcon : hideIcon},
-            { id: "firstNameField", type: "text", label: "first.Name", name: 'firstName', error: this.state.errorFirstName ? 'nameErr' : null, icon: textIcon},
-            { id: "lastNameField", type: "text", label: "last.Name", name: 'lastName', error: this.state.errorLastName ? 'nameERR' : null, icon: textIcon},
+            { id: "passwordField", type: this.state.eye ? 'text' : 'password', label: "password", name: 'password', error: this.state.errorPassword ? 'error' : null, icon: this.state.eye ? witnessIcon : hideIcon},
+            { id: "passwordFieldCheck", type: this.state.eye ? 'text' : 'password', label: "re.Enter password", name: 'passwordCheck', error: this.state.errorPasswordCheck ? errorPasswordCheck : null, icon: this.state.eye ? witnessIcon : hideIcon},
+            { id: "firstNameField", type: "text", label: "first.Name", name: 'firstName', error: this.state.errorFirstName ? errorLetter : null, icon: textIcon},
+            { id: "lastNameField", type: "text", label: "last.Name", name: 'lastName', error: this.state.errorLastName ? errorLetter : null, icon: textIcon},
 
             { id: "streetField", type: "text", label: "street", name: 'street', error: this.state.errorEmpty ? 'nameERR' : null, icon: streetIcon},
             { id: "cityField", type: "text", label: "city", name: 'city', error: this.state.errorEmpty ? 'nameERR' : null, icon: cityIcon},
             { id: "usaField", type: "text", label: "state", name: 'state', error: this.state.errorEmpty ? 'nameERR' : null, icon: usaIcon},
-            { id: "zipField", type: "text", label: "zip", name: 'zip', error: this.state.errorZip ? 'nameERR' : null, icon: numbersIcon},
+            { id: "zipField", type: "text", label: "zip", name: 'zip', error: this.state.errorZip ? errorNumber : null, icon: numbersIcon},
         ]
 
         return(
-<form>
+            <form>
                 <div className='container'>
                     <h2>welcome to e.Market</h2>
 
@@ -121,6 +149,15 @@ class SignUp extends React.Component {
                         onClick={this.handleSubmit}
                         >
                         enter
+                        </button> 
+                    </div>
+                    <div className={style.socialButton}>
+                        <button 
+                            onClick={(e)=>{e.preventDefault()
+                            alert(`we don't do that actaully`)
+                            }}
+                        >
+                        face.Booo
                         </button> 
                     </div>
                 </div>

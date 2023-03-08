@@ -1,7 +1,6 @@
 import React from 'react'
 import { InputBase } from '../inputBase/InputBase'
 import style from '../welcome/Welcome.module.css'
-import { defaultUser } from '../store/Store'
 
 import witness from '../../assets/witness.png'
 import hide from '../../assets/hide.png'
@@ -28,7 +27,6 @@ class SignIn extends React.Component {
         })
     }
     
-    
     validateLogIn = () => {
         const {info} = this.props
         let globalState = info.info
@@ -40,12 +38,10 @@ class SignIn extends React.Component {
         }  
     }
     
-    
     handleSubmit = (e) => {
         e.preventDefault()
         this.validateLogIn()       
     }
-    
     
     render() {
         const witnessIcon = <div  className={style.iconWrapper} onClick={this.eyeBlink}><img id='witness' src={witness} ></img></div> 
@@ -58,10 +54,7 @@ class SignIn extends React.Component {
         const inputData = [
             { id: "emailField", type: "text", label: "email", name: 'email', error: this.state.errorEmail ? errorEmailMessage : null, icon: mailIcon},
             { id: "passwordField", type: this.state.eye ? 'password' : 'text', label: "password", name: 'password', error: this.state.errorPassword ? errorPasswordMessage : null, icon: this.state.eye ? witnessIcon : hideIcon},
-        ]
-        // const { info: { email, password } } = this.props
-        // const globalState = this.props
-        
+        ]        
         
         return (
             <form>

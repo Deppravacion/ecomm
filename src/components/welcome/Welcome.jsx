@@ -58,6 +58,7 @@ class Welcome extends React.Component {
           info={state} 
           onChange={this.handleChange}
           updatePage={this.props.updatePage}
+          addUserToUserAccounts={this.props.addUserToUserAccounts}
         />}
         
         {this.state.membership === 'signIn' && <SignIn 

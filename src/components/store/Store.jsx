@@ -5,16 +5,16 @@ import Welcome from '../welcome/Welcome'
 import { Cart } from '../cart/Cart'
 
 
-export const defaultUser = {
-  email: 'default@estore.com', 
-  password: 'Password123', 
-  firstName: 'John', 
-  lastName: 'Denver',    
-  street: '2001 Blake St', 
-  city: 'Denver', 
-  state: 'CO',
-  zip: '80205',
-}
+// export const defaultUser = {
+//   email: 'default@estore.com', 
+//   password: 'Password123', 
+//   firstName: 'John', 
+//   lastName: 'Denver',    
+//   street: '2001 Blake St', 
+//   city: 'Denver', 
+//   state: 'CO',
+//   zip: '80205',
+// }
 
 
 
@@ -33,19 +33,19 @@ class Store extends Component {
         zip: '80205',
         cartItems: [],
         payment: {},
-        promo: ''
-      }
+        promo: '',
+      },
     ],
 
 
-    email: '', 
-    password: '', 
-    firstName: '', 
-    lastName: '',    
-    street: '', 
-    city: '', 
-    state: '',
-    zip: '',
+    // email: '', 
+    // password: '', 
+    // firstName: '', 
+    // lastName: '',    
+    // street: '', 
+    // city: '', 
+    // state: '',
+    // zip: '',
   }
 
   
@@ -53,6 +53,12 @@ class Store extends Component {
   changeState = (name, state) => {
       this.setState({
       [name]: state,
+    })
+  }
+
+  addUser = (user) => {
+    this.setState({
+      userAccounts: [...this.state.userAccounts, user]
     })
   }
 
@@ -75,6 +81,8 @@ class Store extends Component {
     updatePassword = (state) => this.changeState('password', state )
     updatePage = (state) => this.changeState('page', state)
 
+    addUserToUserAccounts = (user) => this.addUser(user)
+
     render() {
       const { page } = this.state
       return(
@@ -83,10 +91,9 @@ class Store extends Component {
         {/* <Welcome /> */}
         { page == 'Welcome' && <Welcome st
         info={this.state}
-
         updatePage={this.updatePage}
-        updateEmail={this.updateEmail}
-        updatePassword={this.updatePassword}
+        addUserToUserAccounts={this.addUserToUserAccounts}
+
 
         
         /> }
