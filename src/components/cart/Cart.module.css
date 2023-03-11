@@ -1,0 +1,36 @@
+.cartProgress { 
+  background-color: deepskyblue;
+}
+
+.mainCart {
+  border: 1px solid blue;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.storeItems {
+  border: 1px dashed yellow;
+  padding: 5px;
+}
+
+.storeItems .item {
+  border: 1px solid salmon;
+
+}
+
+.imgWrapper img {
+  height: 142px;
+  width: 142px;
+}
+
+/* .imgWrapper {
+width: 100%;
+} */
+
+.cartSummary .total {
+  text-decoration: underline;
+  /* border-bottom: 2px solid grey; */
+}
