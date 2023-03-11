@@ -4,10 +4,13 @@ padding: 0px 5px;
 }
 
 
-/* .radioWrapper {
-    display: flex;
+.radioWrapper {
+    display: flex;    
     justify-content: space-around;
-} */
+    letter-spacing: 2.0px;
+    font-weight: 300;
+    font-size: 20px;
+}
 
 
 .inputWrapper input {

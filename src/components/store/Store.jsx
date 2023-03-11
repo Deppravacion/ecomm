@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import '../store/Store.module.css'
 import Welcome from '../welcome/Welcome'
-import { Cart } from '../cart/Cart'
+import Cart from '../cart/Cart'
 
 
 // export const defaultUser = {
@@ -20,7 +20,7 @@ import { Cart } from '../cart/Cart'
 
 class Store extends Component {
   state = {
-    page: 'Welcome',
+    page: 'Cart',
     userAccounts: [
       {
         email: 'default@estore.com', 
@@ -37,15 +37,6 @@ class Store extends Component {
       },
     ],
 
-
-    // email: '', 
-    // password: '', 
-    // firstName: '', 
-    // lastName: '',    
-    // street: '', 
-    // city: '', 
-    // state: '',
-    // zip: '',
   }
 
   

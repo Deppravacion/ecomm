@@ -35,8 +35,7 @@ class SignUp extends React.Component {
     }
     
     updatePage = (state) => this.props.updatePage(state)
-    addUserToUserAccounts = (user) => { this.props.addUserToUserAccounts(user) }
-    
+    addUserToUserAccounts = (user) => { this.props.addUserToUserAccounts(user)}    
     eyeBlink = () => this.setState({ eye: this.state.eye ? false : true })
     
     localChange = ({ target: {name, value }}) => {
@@ -117,6 +116,7 @@ class SignUp extends React.Component {
     }
 
     render() {
+        
         //icon images
         const witnessIcon = <div  className={style.iconWrapper} onClick={this.eyeBlink}><img id='witness' src={witness} ></img></div> 
         const hideIcon = <div className={style.iconWrapper} onClick={this.eyeBlink}><img id='hide' src={hide} ></img></div> 
