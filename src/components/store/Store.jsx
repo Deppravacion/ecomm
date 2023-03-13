@@ -4,23 +4,9 @@ import '../store/Store.module.css'
 import Welcome from '../welcome/Welcome'
 import Cart from '../cart/Cart'
 
-
-// export const defaultUser = {
-//   email: 'default@estore.com', 
-//   password: 'Password123', 
-//   firstName: 'John', 
-//   lastName: 'Denver',    
-//   street: '2001 Blake St', 
-//   city: 'Denver', 
-//   state: 'CO',
-//   zip: '80205',
-// }
-
-
-
 class Store extends Component {
   state = {
-    page: 'Cart',
+    page: 'Welcome',
     userAccounts: [
       {
         email: 'default@estore.com', 
@@ -38,8 +24,6 @@ class Store extends Component {
     ],
 
   }
-
-  
 
   changeState = (name, state) => {
       this.setState({
@@ -77,8 +61,8 @@ class Store extends Component {
     render() {
       const { page } = this.state
       return(
-      
-      <div className="storeWrapper">
+          
+        <div className="storeWrapper">
         {/* <Welcome /> */}
         { page == 'Welcome' && <Welcome st
         info={this.state}
@@ -94,6 +78,7 @@ class Store extends Component {
         { page == 'Confirmation' && <Welcome /> }
 
       </div>
+      
       )
     }
 }
